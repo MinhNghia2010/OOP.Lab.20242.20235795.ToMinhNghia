@@ -90,4 +90,5 @@ public abstract class Media implements Comparable<Media>{
     public float getCost() {
         return cost;
     }
+    
 }
