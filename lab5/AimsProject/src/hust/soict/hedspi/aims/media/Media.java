@@ -4,7 +4,7 @@ import hust.soict.hedspi.aims.exception.NegativePriceException;
 
 import java.util.Comparator;
 
-public abstract class Media {
+public abstract class Media implements Comparable<Media>{
     private int id;
     private String title;
     private String category;
@@ -44,6 +44,18 @@ public abstract class Media {
 
         Media other = (Media) o;
         return this.getTitle() != null && this.getTitle().equals(other.getTitle());
+    }
+    
+    @Override
+    public int compareTo(Media other) {
+        if (other == null) throw new NullPointerException("Compared media is null");
+
+        int titleCompare = this.title.compareTo(other.title);
+        if (titleCompare != 0) {
+            return titleCompare;
+        } else {
+            return Float.compare(this.cost, other.cost);
+        }
     }
 
     @Override
